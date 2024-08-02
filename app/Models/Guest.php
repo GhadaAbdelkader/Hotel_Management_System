@@ -10,8 +10,15 @@ class Guest extends Model
     use HasFactory;
 
     protected $data = [
-        'name', 'email', 'phone_number', 'address'
+        'user_id',
+        'preferences',
+        'past_stays',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function reservations()
     {
