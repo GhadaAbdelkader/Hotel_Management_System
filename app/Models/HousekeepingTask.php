@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HousekeepingTasks extends Model
+class HousekeepingTask extends Model
 {
     use HasFactory;
     protected $data = [
@@ -20,6 +20,9 @@ class HousekeepingTasks extends Model
     {
         return $this->belongsTo(Room::class);
     }
-
+    public function housekeeper()
+    {
+        return $this->belongsTo(Housekeeper::class);
+    }
 
 }
