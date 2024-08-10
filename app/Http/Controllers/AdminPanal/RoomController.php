@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Http\Controllers\AdminPanal;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RoomUpdateRequest;
+use App\Models\Room;
+use Illuminate\Http\Request;
+use App\Http\Helpers\Functions;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
+
+class RoomController extends Controller
+{
+
+    protected $functions;
+
+    public function __construct(Functions $functions)
+    {
+        $this->functions = $functions;
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): View
+    {
+
+        $rooms = Room::all();
+        return view('admin.rooms.index', compact('rooms'));
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+
+
+//* Store a newly created resource in storage.
+
+    public function create(): View
+    {
+        return view('admin.rooms.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    // RoomController.php
+
+    public function store(RoomUpdateRequest $request )
+    {
+        // Validate the request
+        $attributes = $request->validated();
+
+
+        $room = new Room();
+        $room->fill($request->only([
+            'number', 'type', 'size', 'price', 'hotel_name',
+            'room_description', 'short_description'
+        ]));
+        $room->amenities = json_encode($request->input('amenities'));
+        $room->amenity_icon = json_encode($request->input('amenity_icon'));
+        $room->capacity = json_encode([
+            'adult' => $request->input('adult_capacity'),
+            'child' => $request->input('child_capacity'),
+        ]);
+        $room->status = json_encode($request->input('status'));
+
+        $this->functions->handleImageUploads($request, $room);
+
+        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
+    }
+
+
+    public function edit(Room $room): View
+    {
+        return view('admin.rooms.edit', compact('room'));
+    }
+    /**
+     * Update the specified resource in storage.
+     */
+
+    public function update(RoomUpdateRequest $request, Room $room)
+    {
+        // Validate the request
+        $attributes = $request->validated();
+
+        $room->fill($request->only([
+            'number', 'type', 'size', 'price', 'hotel_name',
+            'room_description', 'short_description'
+        ]));
+        $room->amenities = json_encode($request->input('amenities'));
+        $room->amenity_icon = json_encode($request->input('amenity_icon'));
+        $room->capacity = json_encode([
+            'adult' => $request->input('adult_capacity'),
+            'child' => $request->input('child_capacity')
+        ]);
+        $room->status = json_encode($request->input('status'));
+
+        $this->functions->handleImageUploads($request, $room);
+        $room->save();
+
+        return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Room $room): \Illuminate\Http\RedirectResponse
+    {
+        $room->delete();
+
+        return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
+    }
+
+    /**
+     * @param Request $request
+     * @param Room $room
+     * @return void
+     */
+
+
+
+}
