@@ -37,18 +37,19 @@
                     <div class="col-lg-6">
                         <div class="room_facilities_list">
                             <ul data-cues="slideInLeft">
-                                @foreach(json_decode($room->amenities, true) as $index => $amenity)
-                                    @php
-                                        $icons = json_decode($room->amenity_icon, true);
-                                    @endphp
-                                    @if(isset($icons[$index]))
-                                        <li>
-                                            <i class="{{ $icons[$index] }}"></i> {{ $amenity }}
-                                        </li>
-                                    @else
-                                        <li>{{ $amenity }}</li>
-                                    @endif
-                                @endforeach
+
+
+                                @if(!empty($amenities))
+                                    @foreach($amenities as $index => $amenity)
+                                        @if(isset($icons[$index]))
+                                            <li><i class="{{ $icons[$index] }}"></i> {{ $amenity }}</li>
+                                        @else
+                                            <li>{{ $amenity }}</li>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <li>No amenities available</li>
+                                @endif
                                 {{--                                <li><i class="icon-hotel-double_bed_2"></i> King Size Bed</li>--}}
 {{--                                <li><i class="icon-hotel-safety_box"></i> Safety Box</li>--}}
 {{--                                <li><i class="icon-hotel-patio"></i>Balcony</li>--}}
