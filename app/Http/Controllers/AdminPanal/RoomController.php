@@ -52,22 +52,10 @@ class RoomController extends Controller
     {
         // Validate the request
         $attributes = $request->validated();
+        $attributes = array_merge($attributes, Functions::prepareRoomAttributes($request));
+        $Room = Room::create($attributes);
 
-
-        $room = new Room();
-        $room->fill($request->only([
-            'number', 'type', 'size', 'price', 'hotel_name',
-            'room_description', 'short_description'
-        ]));
-        $room->amenities = json_encode($request->input('amenities'));
-        $room->amenity_icon = json_encode($request->input('amenity_icon'));
-        $room->capacity = json_encode([
-            'adult' => $request->input('adult_capacity'),
-            'child' => $request->input('child_capacity'),
-        ]);
-        $room->status = json_encode($request->input('status'));
-
-        $this->functions->handleImageUploads($request, $room);
+        $this->functions->handleImageUploads($request, $Room);
 
         return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
@@ -86,20 +74,14 @@ class RoomController extends Controller
         // Validate the request
         $attributes = $request->validated();
 
-        $room->fill($request->only([
-            'number', 'type', 'size', 'price', 'hotel_name',
-            'room_description', 'short_description'
-        ]));
-        $room->amenities = json_encode($request->input('amenities'));
-        $room->amenity_icon = json_encode($request->input('amenity_icon'));
-        $room->capacity = json_encode([
-            'adult' => $request->input('adult_capacity'),
-            'child' => $request->input('child_capacity')
-        ]);
-        $room->status = json_encode($request->input('status'));
+        // Prepare additional room attributes
+        $attributes = array_merge($attributes, Functions::prepareRoomAttributes($request));
 
+        // Update the room with the new attributes
+        $room->update($attributes);
+
+        // Handle image uploads
         $this->functions->handleImageUploads($request, $room);
-        $room->save();
 
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }

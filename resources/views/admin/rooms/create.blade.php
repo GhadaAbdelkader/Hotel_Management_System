@@ -1,4 +1,19 @@
 <x-layout>
+    <div id="main">
+
+        <!-- -------------- Header  -------------- -->
+
+
+        <!-- -------------- /Sidebar Left -------------- -->
+
+        <!-- -------------- Main Wrapper -------------- -->
+        <section id="content_wrapper">
+    @include('admin.partials._header')
+
+    <!-- -------------- /Header  -------------- -->
+
+    <!-- -------------- Sidebar Left  -------------- -->
+    @include('admin.partials._sidebar_left')
     @include('admin.partials._topbar_dropmenu_wrapper')
     @include('admin.partials._topbar')
 
@@ -20,7 +35,11 @@
                         </div>
                         <div class="form-group">
                             <label for="number">Number</label>
-                            <input type="text" name="number" id="number" class="form-control" required>
+                            <input type="text" name="number" id="number" class="form-control"  value="{{ old('number') }}" required>
+                            @error('number')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -30,6 +49,10 @@
                                 <option value="Double">Double</option>
                                 <option value="Suite">Suite</option>
                             </select>
+                            @error('type')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -39,20 +62,37 @@
                                 <option value="Medium">Medium</option>
                                 <option value="Large">Large</option>
                             </select>
+                            @error('size')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="room_description">Room Description</label>
+                            <select name="room_description" id="room_description" class="form-control">
+                                <option value="Cozy and comfortable room with modern amenities">Cozy and comfortable room with modern amenities</option>
+                                <option value="Spacious room with a stunning view">Spacious room with a stunning view</option>
+                                <option value="Luxurious suite with a private balcony">Luxurious suite with a private balcony</option>
+                            </select>
+                            @error('room_description')
+                            <p class="text-danger mn">{{ $message }}</p>
 
-                                <textarea name="room_description"></textarea>
-
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="short_description">Short Description</label>
+                            <select name="short_description" id="short_description" class="form-control">
+                                <option value="Cozy and comfortable room with modern amenities">Cozy and comfortable room with modern amenities</option>
+                                <option value="Spacious room with a stunning view">Spacious room with a stunning view</option>
+                                <option value="Luxurious suite with a private balcony">Luxurious suite with a private balcony</option>
+                            </select>
+                            @error('room_description')
+                            <p class="text-danger mn">{{ $message }}</p>
 
-                            <textarea name="short_description"></textarea>
-
+                            @enderror
                         </div>
+
 
                         <div class="form-group">
                             <label for="amenities">Amenities</label>
@@ -67,9 +107,13 @@
                                 </div>
 
                             </div>
+                            @error('amenities')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="amenities">Amenities Icon</label>
+                            <label for="amenity_icon">Amenities Icon</label>
                             <div class="bordered ph15 pb10 pt15">
                                 <div class="checkbox-custom checkbox-primary mb5">
                                     <input type="checkbox" name="amenity_icon[]" id="customicon-double-bed" value="customicon-double-bed">
@@ -81,51 +125,71 @@
                                 </div>
 
                             </div>
+                            @error('amenity_icon')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="main_picture">Main Picture</label>
-                            <input type="file" name="main_picture" id="main_picture" class="form-control">
+                            <input type="file" name="main_picture" id="main_picture" class="form-control" value="{{ old('main_picture') }}">
+
+                            @error('main_picture')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="pictures">Pictures</label>
-                            <input type="file" name="pictures[]" id="pictures" class="form-control" multiple>
+                            <input type="file" name="pictures[]" id="pictures" class="form-control" value="{{ old('pictures') }}" multiple>
+
+                            @error('pictures')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="adult_capacity">Adult Capacity</label>
                             <input type="number" name="adult_capacity" id="adult_capacity" class="form-control"
-                                   required>
+                                   value="{{ old('adult_capacity') }}" required>
+
+                            @error('adult_capacity')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="child_capacity">Child Capacity</label>
                             <input type="number" name="child_capacity" id="child_capacity" class="form-control"
-                                   required>
-                        </div>
+                                   value="{{ old('child_capacity') }}" required>
+                            @error('child_capacity')
+                            <p class="text-danger mn">{{ $message }}</p>
 
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <div class="bordered ph15 pb10 pt15">
-                                <div class="checkbox-custom checkbox-primary mb5">
-                                    <input type="checkbox" name="status[]" id="Available" value="Available">
-                                    <label for="Available">Available</label>
-                                </div>
-                                <div class="checkbox-custom checkbox-primary mb5">
-                                    <input type="checkbox" name="status[]" id="Occupied" value="Occupied">
-                                    <label for="Occupied">Occupied</label>
-                                </div>
-                                <div class="checkbox-custom checkbox-primary mb5">
-                                    <input type="checkbox" name="status[]" id="Maintenance" value="Maintenance">
-                                    <label for="Maintenance">Under Maintenance</label>
-                                </div>
-                            </div>
-                        </div>
+                            <select name="status" id="status" class="form-control">
+                                <option value="Available">Available</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Maintenance">Under Maintenance</option>
+                            </select>
+                            @error('status')
+                            <p class="text-danger mn">{{ $message }}</p>
 
+                            @enderror
+                        </div>
 
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="number" name="price" id="price" class="form-control" required>
+                            <input type="number" name="price" id="price" class="form-control" value="{{ old('price') }}" required>
+                            @error('price')
+                            <p class="text-danger mn">{{ $message }}</p>
+
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -138,4 +202,13 @@
         </div>
 
     </section>
+    @include('admin.partials._sidebar_right')
+        </section>
+        <!-- -------------- /Main Wrapper -------------- -->
+
+        <!-- -------------- Sidebar Right -------------- -->
+
+        <!-- -------------- /Sidebar Right -------------- -->
+
+    </div>
 </x-layout>

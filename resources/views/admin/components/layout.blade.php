@@ -40,6 +40,8 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <![endif]-->
 
 </head>
@@ -218,35 +220,18 @@
 <!-- -------------- /Customizer -------------- -->
 
 <!-- -------------- Body Wrap  -------------- -->
-<div id="main">
 
-    <!-- -------------- Header  -------------- -->
-    @include('admin.partials._header')
-
-    <!-- -------------- /Header  -------------- -->
-
-    <!-- -------------- Sidebar Left  -------------- -->
-    @include('admin.partials._sidebar_left')
-
-    <!-- -------------- /Sidebar Left -------------- -->
-
-    <!-- -------------- Main Wrapper -------------- -->
-    <section id="content_wrapper">
         {{ $slot }}
 
-        <!-- -------------- Topbar Menu Wrapper -------------- -->
-        <!-- -------------- Topbar -------------- -->
-        <!-- -------------- Content -------------- -->
-        <!-- -------------- Page Footer -------------- -->
-    </section>
-    <!-- -------------- /Main Wrapper -------------- -->
 
-    <!-- -------------- Sidebar Right -------------- -->
-    @include('admin.partials._sidebar_right')
-
-    <!-- -------------- /Sidebar Right -------------- -->
-
-</div>
+@if (session()->has('success'))
+    <div x-data="{show: true }"
+         x-init = "setTimeout(() => show = false, 4000)"
+         x-show = "show"
+    >
+        <p class="session_p" style=" ">{{ session('success') }}</p>
+    </div>
+    @endif
 <!-- -------------- /Body Wrap  -------------- -->
 
 <!-- -------------- Scripts -------------- -->
@@ -283,6 +268,7 @@
 <script src="{{ asset('assets/js/demo/demo.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 @stack('room_index-js')
+@stack('register-js')
 <!-- -------------- Widget JS -------------- -->
 <script src="{{ asset('assets/js/demo/widgets.js') }}"></script>
 <script src="{{ asset('assets/js/demo/widgets_sidebar.js') }}"></script>

@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    public const HOME = '/';
+
     /**
      * Register any application services.
      */
@@ -22,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // Existing component registration
         Blade::component('admin.components.layout', 'layout');
+
+        Blade::component('admin.components.register_layout', 'register_layout');
 
         // New component registration
         Blade::component('hotel.components.layout', 'hotel-layout');
