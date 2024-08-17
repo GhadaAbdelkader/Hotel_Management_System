@@ -18,11 +18,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('guest'); // Default role set to 'guest'
-            $table->unsignedBigInteger('guest_id')->nullable(); // Nullable guest_id for guests
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('guest_id')->references('id')->on('guests')->onDelete('cascade');
+
+
         });
     }
 

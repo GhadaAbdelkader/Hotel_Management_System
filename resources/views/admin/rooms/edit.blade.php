@@ -29,7 +29,6 @@
                 <div class="panel-body pn">
                     <form action="{{ route('rooms.update', $room->id) }}" method="POST"
                           enctype="multipart/form-data">                        @csrf
-                        @csrf
                         @method('PUT')
 
                         <div class="form-group">

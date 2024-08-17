@@ -13,12 +13,6 @@ use Illuminate\View\View;
 class RoomController extends Controller
 {
 
-    protected $functions;
-
-    public function __construct(Functions $functions)
-    {
-        $this->functions = $functions;
-    }
 
     /**
      * Display a listing of the resource.
@@ -50,6 +44,7 @@ class RoomController extends Controller
 
     public function store(RoomUpdateRequest $request )
     {
+        dd($request->all());
         // Validate the request
         $attributes = $request->validated();
         $attributes = array_merge($attributes, Functions::prepareRoomAttributes($request));

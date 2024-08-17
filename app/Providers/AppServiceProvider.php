@@ -25,7 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         // Existing component registration
         Blade::component('admin.components.layout', 'layout');
-
         Blade::component('admin.components.register_layout', 'register_layout');
 
         // New component registration

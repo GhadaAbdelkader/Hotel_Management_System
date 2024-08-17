@@ -11,7 +11,7 @@
     @include('admin.partials._header')
 
     <!-- -------------- /Header  -------------- -->
-
+{{debugbar()->error('hello')}}
     <!-- -------------- Sidebar Left  -------------- -->
     @include('admin.partials._sidebar_left')
     @include('admin.partials._topbar_dropmenu_wrapper')
@@ -25,8 +25,9 @@
                     <span class="panel-title">Create Room</span>
                 </div>
                 <div class="panel-body pn">
-                    <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+
+                    <form action="{{ route('rooms.store') }}" method="post" enctype="multipart/form-data">
+
                         <div class="form-group">
                             <label for="type">Hotel Name</label>
                             <select name="type" id="type" class="form-control">

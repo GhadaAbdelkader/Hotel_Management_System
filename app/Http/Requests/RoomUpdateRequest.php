@@ -13,6 +13,7 @@ class RoomUpdateRequest extends FormRequest
 
     public function rules()
     {
+        dd('request');
         return [
             'number' => 'required|max:255',
             'type' => 'required',
