@@ -34,5 +34,16 @@ class Functions
         $room->price = $request->input('price');
         $room->save();
     }
-
+    public static function prepareRoomAttributes($request)
+    {
+        return [
+            'amenities' => json_encode($request->input('amenities')),
+            'amenity_icon' => json_encode($request->input('amenity_icon')),
+            'capacity' => json_encode([
+                'adult' => $request->input('adult_capacity'),
+                'child' => $request->input('child_capacity')
+            ]),
+            'status' => json_encode($request->input('status')),
+        ];
+    }
 }

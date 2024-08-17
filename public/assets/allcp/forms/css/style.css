@@ -6,3 +6,14 @@
 }
 /* rooms index */
 
+.session_p {
+    background-color: #67d3e0;
+    color:#fff;
+    font-size: 15px;
+    position: fixed;
+    right: 16px;
+    bottom: 0;
+    padding: 5px 10px;
+    border-radius: 7px;
+    z-index: 99;
+}

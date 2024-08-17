@@ -551,7 +551,12 @@
                 </ul>
             </div>
         </li>
-        <li class="dropdown dropdown-fuse">
+        <li class="dropdown dropdown-fuse" style="  display: flex;">
+            @unless (auth()->check())
+            <a href="/register" class="dropdown-toggle fw600">
+                <span class="hidden-xs"><name>Register</name> </span>
+            </a>
+            @endunless
             <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
                 <span class="hidden-xs"><name>Doug Adams</name> </span>
                 <span class="fa fa-caret-down hidden-xs mr15"></span>
