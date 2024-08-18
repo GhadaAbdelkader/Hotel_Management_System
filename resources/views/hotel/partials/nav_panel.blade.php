@@ -19,11 +19,11 @@
                 <li class="parent"><a href="#0">Rooms & Suites</a>
                     <ul class="level-2">
                         <li class="back"><a href="#0">Back</a></li>
-                        <li><a href="later/room-list-1.html">Room list 1</a></li>
-                        <li><a href="later/room-list-2.html">Room list 2</a></li>
-                        <li><a href="room-list-3.html">Room list 3</a></li>
-                        <li><a href="later/room-details.html">Room details</a></li>
-                        <li><a href="later/room-details-booking.html">Working Booking Request</a></li>
+                        <li><a href="/hotel/room-list">Room list</a></li>
+{{--                        <li><a href="later/room-list-2.html">Room list 2</a></li>--}}
+{{--                        <li><a href="room-list-3.html">Room list 3</a></li>--}}
+{{--                        <li><a href="later/room-details.html">Room details</a></li>--}}
+{{--                        <li><a href="later/room-details-booking.html">Working Booking Request</a></li>--}}
                     </ul>
                 </li>
                 <li><a href="later/about.html">About</a></li>

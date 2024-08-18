@@ -9,7 +9,6 @@
     <meta name="description" content="Alliance - A Responsive HTML5 Admin UI Framework">
     <meta name="author" content="ThemeREX">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-// csrf meta
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- -------------- Fonts -------------- -->
@@ -42,9 +41,9 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <![endif]-->
+    <script src="https://cdn.tiny.cloud/1/gd3u9y6kdtf8bq44nrr4tiles1dzqeqxhf1bfzypdog9qe8j/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
 
@@ -222,20 +221,43 @@
 <!-- -------------- /Customizer -------------- -->
 
 <!-- -------------- Body Wrap  -------------- -->
+<div id="main">
 
+    <!-- -------------- Header  -------------- -->
+
+    @include('admin.partials._header')
+
+    <!-- -------------- /Sidebar Left -------------- -->
+    @include('admin.partials._sidebar_left')
+
+    <!-- -------------- Main Wrapper -------------- -->
+    <section id="content_wrapper">
+
+        <!-- -------------- /Header  -------------- -->
+        {{--{{debugbar()->error('hello')}}--}}
+        <!-- -------------- Sidebar Left  -------------- -->
         {{ $slot }}
 
+    </section>
 
 @if (session()->has('success'))
-    <div x-data="{show: true }"
-         x-init = "setTimeout(() => show = false, 4000)"
+    <div x-data="{show: false }"
          x-show = "show"
+         x-init = "setTimeout(() => show = true, 10000)"
     >
         <p class="session_p" style=" ">{{ session('success') }}</p>
     </div>
     @endif
-<!-- -------------- /Body Wrap  -------------- -->
 
+    <!-- -------------- /Body Wrap  -------------- -->
+    <!-- -------------- /Main Wrapper -------------- -->
+
+    <!-- -------------- Sidebar Right -------------- -->
+
+    <!-- -------------- /Sidebar Right -------------- -->
+    @include('admin.partials._sidebar_right')
+
+</div>
 <!-- -------------- Scripts -------------- -->
 
 <!-- -------------- jQuery -------------- -->
@@ -246,6 +268,7 @@
 <script src="{{ asset('assets/js/plugins/highcharts/highcharts.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/c3charts/d3.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/c3charts/c3.min.js') }}"></script>
+@stack('room_create_js')
 
 <!-- -------------- Simple Circles Plugin -------------- -->
 <script src="{{ asset('assets/js/plugins/circles/circles.js') }}"></script>
@@ -276,7 +299,20 @@
 <script src="{{ asset('assets/js/demo/widgets_sidebar.js') }}"></script>
 <script src="{{ asset('assets/js/pages/dashboard1.js') }}"></script>
 <!-- -------------- /Scripts -------------- -->
-
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    });
+</script>
 </body>
 
 </html>

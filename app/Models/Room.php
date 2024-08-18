@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property string $size
  * @property array $amenities
+ * @property array $amenity_icon
  * @property array $capacity
- * @property array $status
+ * @property string $status
  * @property string $main_picture
  * @property array $pictures
  * @property float $price

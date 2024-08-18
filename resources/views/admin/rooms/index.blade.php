@@ -1,19 +1,5 @@
 <x-layout>
-    <div id="main">
 
-        <!-- -------------- Header  -------------- -->
-
-
-        <!-- -------------- /Sidebar Left -------------- -->
-
-        <!-- -------------- Main Wrapper -------------- -->
-        <section id="content_wrapper">
-            @include('admin.partials._header')
-
-            <!-- -------------- /Header  -------------- -->
-
-            <!-- -------------- Sidebar Left  -------------- -->
-            @include('admin.partials._sidebar_left')
             @include('admin.partials._topbar_dropmenu_wrapper')
             @include('admin.partials._topbar')
 
@@ -60,9 +46,13 @@
                                     <td><img src="{{ asset( $room->main_picture) }}" alt="Main Picture" width="100">
                                     </td>
                                     <td>
-                                        @foreach (json_decode($room->pictures, true) as $picture)
-                                            <img src="{{ asset(  $picture) }}" alt="Picture" width="50">
-                                        @endforeach
+                                        @if ($room->pictures && is_array(json_decode($room->pictures, true)))
+                                            @foreach (json_decode($room->pictures, true) as $picture)
+                                                <img src="{{ asset($picture) }}" alt="Picture" width="50">
+                                            @endforeach
+                                        @else
+                                            <p>No pictures available</p>
+                                        @endif
                                     </td>
                                     <td>{{ implode(', ', json_decode($room->capacity, true)) }}</td>
                                     <td>{{ $room->status }}</td>
@@ -115,13 +105,5 @@
             // });
         </script>
     @endpush
-            @include('admin.partials._sidebar_right')
-        </section>
-        <!-- -------------- /Main Wrapper -------------- -->
 
-        <!-- -------------- Sidebar Right -------------- -->
-
-        <!-- -------------- /Sidebar Right -------------- -->
-
-    </div>
 </x-layout>

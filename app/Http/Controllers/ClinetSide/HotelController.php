@@ -22,6 +22,7 @@ class HotelController extends Controller
     }
     public function show(Room $room)
     {
+
         return view('hotel.room_list.room-details', compact('room'));
     }
 }

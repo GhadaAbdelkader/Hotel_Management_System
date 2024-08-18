@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('size');
             $table->json("amenities");
-            $table->json('pictures');
+            $table->text('pictures');
             $table->text('main_picture');
             $table->json('capacity');
             $table->string('status');
