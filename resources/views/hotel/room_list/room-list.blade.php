@@ -33,8 +33,8 @@
                         <!-- /carousel -->
                         <div class="box_item_info" data-jarallax-element="-25">
                             <small>From ${{ $room->price }}/night</small>
-                            <h2>{{ $room->type }}</h2>
-                            <p>{{ $room->short_description }}</p>
+                            <h2>{{ $room->number }}</h2>
+                            <p> {{ $room->short_description }} </p>
                             <div class="facilities clearfix">
                                 <ul>
                                     @foreach(json_decode($room->amenities, true) as $index => $amenity)

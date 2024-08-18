@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomUpdateRequest;
 use App\Models\Room;
 use Illuminate\Http\Request;
-use App\Http\Helpers\Functions;
+use App\Http\Services\Functions;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -44,14 +44,13 @@ class RoomController extends Controller
 
     public function store(RoomUpdateRequest $request )
     {
-        dd($request->all());
+//        dd($request->all());
         // Validate the request
         $attributes = $request->validated();
         $attributes = array_merge($attributes, Functions::prepareRoomAttributes($request));
         $Room = Room::create($attributes);
 
-        $this->functions->handleImageUploads($request, $Room);
-
+        (new \App\Http\Services\Functions)->handleImageUploads($request, $Room);
         return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
 
@@ -76,7 +75,7 @@ class RoomController extends Controller
         $room->update($attributes);
 
         // Handle image uploads
-        $this->functions->handleImageUploads($request, $room);
+        (new \App\Http\Services\Functions)->handleImageUploads($request, $room);
 
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }

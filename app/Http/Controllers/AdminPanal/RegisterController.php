@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanal;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\AdminUser;
 
 class RegisterController extends Controller
@@ -12,25 +13,20 @@ class RegisterController extends Controller
         return view('admin.register.create');
     }
 
-    public function store()
+    public function store(RegisterRequest $request)
     {
-        $attributes = request()->validate([
-            'name' => 'required|max:255',
-            'username' => 'required|max:255|min:3|unique:admins,username',
-            'email' => 'required|email|max:255|unique:admins,email',
-            'password' => 'required|min:7|max:255',
-            'confirmPassword' => 'required|min:7|max:255|same:password'
-        ]);
-
-
+        $attributes = $request->validated();
 
         $adminUser = AdminUser::create($attributes);
+        if($adminUser)
+        {
+            auth()->login($adminUser);
+            session()->flash('success', 'Your account has been created.');
 
-        auth()->login($adminUser);
+            return redirect('/');
+        }
 
-        session()->flash('success', 'Your account has been created.');
 
-        return redirect('/');
 
 
     }

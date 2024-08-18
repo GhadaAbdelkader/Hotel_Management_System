@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Helpers;
+namespace App\Http\Services;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
@@ -10,40 +10,38 @@ class Functions
 {
     public function handleImageUploads(Request $request, Room $room): void
     {
-        $room->status = json_encode($request->input('status'));
-
+        // Handle main picture upload
         if ($request->hasFile('main_picture')) {
-            // Handle main picture upload
             $file = $request->file('main_picture');
             $path = $file->store('images', 'public');
             $room->main_picture = Storage::url($path);
         }
 
+        // Handle additional pictures upload
         if ($request->hasFile('pictures')) {
-            // Handle additional pictures upload
             $pictures = [];
             foreach ($request->file('pictures') as $file) {
-                if ($file) {
-                    $path = $file->store('images', 'public');
-                    $pictures[] = Storage::url($path);
-                }
+                $path = $file->store('images', 'public');
+                $pictures[] = Storage::url($path);
             }
-            $room->pictures = json_encode($pictures);
+            $room->pictures = json_encode($pictures); // Store as JSON
         }
 
-        $room->price = $request->input('price');
         $room->save();
     }
+
+
+
     public static function prepareRoomAttributes($request)
     {
         return [
             'amenities' => json_encode($request->input('amenities')),
             'amenity_icon' => json_encode($request->input('amenity_icon')),
+            'pictures' => json_encode($request->input('pictures')),
             'capacity' => json_encode([
                 'adult' => $request->input('adult_capacity'),
                 'child' => $request->input('child_capacity')
             ]),
-            'status' => json_encode($request->input('status')),
         ];
     }
 }

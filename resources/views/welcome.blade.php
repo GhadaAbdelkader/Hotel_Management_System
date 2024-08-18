@@ -1,19 +1,5 @@
 <x-layout>
-    <div id="main">
 
-        <!-- -------------- Header  -------------- -->
-
-
-        <!-- -------------- /Sidebar Left -------------- -->
-
-        <!-- -------------- Main Wrapper -------------- -->
-        <section id="content_wrapper">
-            @include('admin.partials._header')
-
-            <!-- -------------- /Header  -------------- -->
-
-            <!-- -------------- Sidebar Left  -------------- -->
-            @include('admin.partials._sidebar_left')
             @include('admin.partials._topbar_dropmenu_wrapper')
             @include('admin.partials._topbar')
     <section id="content" class="table-layout animated fadeIn">
@@ -1042,13 +1028,5 @@
         @include('admin.partials._footer')
 
     </section>
-            @include('admin.partials._sidebar_right')
-        </section>
-        <!-- -------------- /Main Wrapper -------------- -->
 
-        <!-- -------------- Sidebar Right -------------- -->
-
-        <!-- -------------- /Sidebar Right -------------- -->
-
-    </div>
 </x-layout>

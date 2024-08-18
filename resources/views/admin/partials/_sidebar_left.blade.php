@@ -87,34 +87,50 @@
 {{--                    </li>--}}
 {{--                </ul>--}}
             </li>
+            <li class="active">
+                <a class="accordion-toggle menu-open" href="/hotel">
+                    <span class="fa fa-dashboard"></span>
+                    <span class="sidebar-title">Paradise Hotel</span>
+                </a>
+                {{--                <ul class="nav sub-nav">--}}
+                {{--                    <li class="active">--}}
+                {{--                        <a href="dashboard1.html">--}}
+                {{--                            <span class="fa fa-file-text-o"></span> Layout 1 </a>--}}
+                {{--                    </li>--}}
+                {{--                    <li>--}}
+                {{--                        <a href="dashboard2.html">--}}
+                {{--                            <span class="fa fa-file-text-o"></span> Layout 2 </a>--}}
+                {{--                    </li>--}}
+                {{--                </ul>--}}
+            </li>
             <li class="sidebar-label pt25">Tools</li>
             <li>
                 <a class="accordion-toggle" href="#">
                     <span class="fa fa-share-square-o"></span>
-                    <span class="sidebar-title">Sales stats</span>
+                    <span class="sidebar-title">Rooms</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
                     <li>
-                        <a href="">
+                        <a href="/admin/rooms">
                             <span class="glyphicon glyphicon-tags"></span> Overview </a>
                     </li>
                     <li>
-                        <a href="sales-stats-products.html">
-                            <span class="glyphicon glyphicon-tags"></span> Products </a>
+                        <a href="/admin/rooms/create">
+                            <span class="glyphicon glyphicon-tags"></span> Create Room</a>
                     </li>
-                    <li>
-                        <a href="sales-stats-purchases.html">
-                            <span class="fa fa-money"></span> Purchases </a>
-                    </li>
-                    <li>
-                        <a href="sales-stats-clients.html">
-                            <span class="fa fa-users"></span> Clients </a>
-                    </li>
-                    <li>
-                        <a href="sales-stats-general-settings.html">
-                            <span class="fa fa-gears"></span> General Settings </a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <a href="sales-stats-purchases.html">--}}
+{{--                            <span class="fa fa-money"></span> Purchases </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="sales-stats-clients.html">--}}
+{{--                            <span class="fa fa-users"></span> Clients </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="sales-stats-general-settings.html">--}}
+{{--                            <span class="fa fa-gears"></span> General Settings </a>--}}
+{{--                    </li>--}}
                 </ul>
             </li>
 

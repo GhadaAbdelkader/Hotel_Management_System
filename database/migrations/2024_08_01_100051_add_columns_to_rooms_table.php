@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('hotel_name')->nullable();
             $table->text('room_description')->nullable();
             $table->text('short_description')->nullable();
-            $table->string('amenity_icon')->nullable();
+            $table->json('amenity_icon')->nullable();
         });
     }
 

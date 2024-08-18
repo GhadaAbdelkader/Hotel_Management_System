@@ -1,19 +1,5 @@
 <x-layout>
-    <div id="main">
 
-        <!-- -------------- Header  -------------- -->
-
-
-        <!-- -------------- /Sidebar Left -------------- -->
-
-        <!-- -------------- Main Wrapper -------------- -->
-        <section id="content_wrapper">
-            @include('admin.partials._header')
-
-            <!-- -------------- /Header  -------------- -->
-
-            <!-- -------------- Sidebar Left  -------------- -->
-            @include('admin.partials._sidebar_left')
             @include('admin.partials._topbar_dropmenu_wrapper')
             @include('admin.partials._topbar')
 
@@ -66,33 +52,45 @@
 
                             @enderror
                         </div>
-
                         <div class="form-group">
                             <label for="room_description">Room Description</label>
-                            <select name="room_description" id="room_description" class="form-control">
-                                <option value="Cozy and comfortable room with modern amenities" {{ $room->room_description == 'Cozy and comfortable room with modern amenities' ? 'selected' : '' }}>Cozy and comfortable room with modern amenities</option>
-                                <option value="Spacious room with a stunning view" {{ $room->room_description == 'Spacious room with a stunning view' ? 'selected' : '' }}>Spacious room with a stunning view</option>
-                                <option value="Luxurious suite with a private balcony" {{ $room->room_description == 'Luxurious suite with a private balcony' ? 'selected' : '' }}>Luxurious suite with a private balcony</option>
-                            </select>
+                            <textarea name="room_description" id="room_description" class="form-control">    {{ $room->room_description }}</textarea>
                             @error('room_description')
                             <p class="text-danger mn">{{ $message }}</p>
-
                             @enderror
                         </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="room_description">Room Description</label>--}}
+{{--                            <select name="room_description" id="room_description" class="form-control">--}}
+{{--                                <option value="Cozy and comfortable room with modern amenities" {{ $room->room_description == 'Cozy and comfortable room with modern amenities' ? 'selected' : '' }}>Cozy and comfortable room with modern amenities</option>--}}
+{{--                                <option value="Spacious room with a stunning view" {{ $room->room_description == 'Spacious room with a stunning view' ? 'selected' : '' }}>Spacious room with a stunning view</option>--}}
+{{--                                <option value="Luxurious suite with a private balcony" {{ $room->room_description == 'Luxurious suite with a private balcony' ? 'selected' : '' }}>Luxurious suite with a private balcony</option>--}}
+{{--                            </select>--}}
+{{--                            @error('room_description')--}}
+{{--                            <p class="text-danger mn">{{ $message }}</p>--}}
 
+{{--                            @enderror--}}
+{{--                        </div>--}}
+
+{{--                        <div class="form-group">--}}
+{{--                            <label for="short_description">Short Description</label>--}}
+{{--                            <select name="short_description" id="short_description" class="form-control">--}}
+{{--                                <option value="Cozy and comfortable room with modern amenities" {{ $room->short_description == 'Cozy and comfortable room with modern amenities' ? 'selected' : '' }}>Cozy and comfortable room with modern amenities</option>--}}
+{{--                                <option value="Spacious room with a stunning view" {{ $room->short_description == 'Spacious room with a stunning view' ? 'selected' : '' }}>Spacious room with a stunning view</option>--}}
+{{--                                <option value="Luxurious suite with a private balcony" {{ $room->short_description == 'Luxurious suite with a private balcony' ? 'selected' : '' }}>Luxurious suite with a private balcony</option>--}}
+{{--                            </select>--}}
+{{--                            @error('short_description')--}}
+{{--                            <p class="text-danger mn">{{ $message }}</p>--}}
+
+{{--                            @enderror--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <label for="short_description">Short Description</label>
-                            <select name="short_description" id="short_description" class="form-control">
-                                <option value="Cozy and comfortable room with modern amenities" {{ $room->short_description == 'Cozy and comfortable room with modern amenities' ? 'selected' : '' }}>Cozy and comfortable room with modern amenities</option>
-                                <option value="Spacious room with a stunning view" {{ $room->short_description == 'Spacious room with a stunning view' ? 'selected' : '' }}>Spacious room with a stunning view</option>
-                                <option value="Luxurious suite with a private balcony" {{ $room->short_description == 'Luxurious suite with a private balcony' ? 'selected' : '' }}>Luxurious suite with a private balcony</option>
-                            </select>
+                            <textarea name="short_description" id="short_description" class="form-control">    {{ $room->short_description }}</textarea>
                             @error('short_description')
                             <p class="text-danger mn">{{ $message }}</p>
-
                             @enderror
                         </div>
-
                         <div class="form-group">
                             <label>Amenities</label>
                             <div class="bordered ph15 pb10 pt15">
@@ -230,17 +228,7 @@
             <div class="mv40"></div>
 
         </div>
-        <!-- -------------- /Column Center -------------- -->
 
     </section>
-    <!-- -------------- /Content -------------- -->
-    @include('admin.partials._sidebar_right')
-    </section>
-    <!-- -------------- /Main Wrapper -------------- -->
 
-    <!-- -------------- Sidebar Right -------------- -->
-
-    <!-- -------------- /Sidebar Right -------------- -->
-
-    </div>
 </x-layout>
