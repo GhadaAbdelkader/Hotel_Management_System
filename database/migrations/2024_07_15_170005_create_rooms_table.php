@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('number');
             $table->string('type');
             $table->string('size');
-            $table->json("amenities");
             $table->text('pictures');
             $table->text('main_picture');
             $table->json('capacity');
             $table->string('status');
-            $table->decimal('price', 8, 2);
+            $table->integer('price', 8, 2);
             $table->timestamps();
         });
     }

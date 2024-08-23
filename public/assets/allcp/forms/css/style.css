@@ -17,3 +17,41 @@
     border-radius: 7px;
     z-index: 99;
 }
+
+
+/* for upload image in create room page */
+.btn-file > input {
+
+    transform: translate(0px, 0) scale(1)!important;
+}
+
+/* for upload image in create room page */
+/* for icons in amenity create */
+.amenity_list  i {
+    font-size: 22px;
+    margin-right: 10px;
+    margin-left: 5px;
+    color: #7f828f;
+}
+
+/*.tabs-left > li > a {*/
+/*    display: inline-block;*/
+/*    color: #FFF;*/
+/*    font-size: 15px;*/
+/*    text-align: center;*/
+/*    padding: 12px 18px;*/
+/*    !*background-color: #BBBBBB;*!*/
+/*    text-decoration: none;*/
+/*    -webkit-user-drag: none;*/
+
+/*}*/
+/*.tab-block .tabs-left > li.active > a{*/
+/*    background-color: #67d3e0;*/
+/*    color: #fff;*/
+/*}*/
+/*.tabs-left > li > a {*/
+/*    !*background-color: #BBBBBB;*!*/
+/*    width: 100%;*/
+/*}*/
+
+/* for icons in amenity create */

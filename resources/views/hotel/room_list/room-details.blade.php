@@ -1,5 +1,4 @@
-<x-hotel-layout>
-
+<x-hotel-layout :room="$room" :amenities="$amenities" >
 
 <div class="hero full-height jarallax" data-jarallax data-speed="0.2">
             <img class="jarallax-img kenburns" src="{{ asset('hotel_assets/img/rooms/1.jpg') }}" alt="">
@@ -37,30 +36,13 @@
                     <div class="col-lg-6">
                         <div class="room_facilities_list">
                             <ul data-cues="slideInLeft">
-
-
                                 @if(!empty($amenities))
-                                    @foreach($amenities as $index => $amenity)
-                                        @if(isset($icons[$index]))
-                                            <li><i class="{{ $icons[$index] }}"></i> {{ $amenity }}</li>
-                                        @else
-                                            <li>{{ $amenity }}</li>
-                                        @endif
+                                    @foreach($amenities as $amenity)
+                                        <li><i class="{{ $amenity->icon }}"></i> {{ $amenity->name }}</li>
                                     @endforeach
                                 @else
                                     <li>No amenities available</li>
                                 @endif
-                                {{--                                <li><i class="icon-hotel-double_bed_2"></i> King Size Bed</li>--}}
-{{--                                <li><i class="icon-hotel-safety_box"></i> Safety Box</li>--}}
-{{--                                <li><i class="icon-hotel-patio"></i>Balcony</li>--}}
-{{--                                <li><i class="icon-hotel-tv"></i> 32 Inch TV</li>--}}
-{{--                                <li><i class="icon-hotel-disable"></i> Disable Access</li>--}}
-{{--                                <li><i class="icon-hotel-dog"></i> Pet Allowed</li>--}}
-{{--                                <li><i class="icon-hotel-bottle"></i> Welcome Bottle</li>--}}
-{{--                                <li><i class="icon-hotel-wifi"></i> Wifi / Netflix access</li>--}}
-{{--                                <li><i class="icon-hotel-hairdryer"></i> Air Dryer</li>--}}
-{{--                                <li><i class="icon-hotel-condition"></i> Air Condition</li>--}}
-{{--                                <li><i class="icon-hotel-loundry"></i>Loundry Service</li>--}}
                             </ul>
                         </div>
                     </div>
@@ -75,16 +57,32 @@
         <div class="container-fluid p-lg-0">
             <div data-cues="zoomIn">
                 <div class="owl-carousel owl-theme carousel_item_centered kenburns rounded-img">
+                    <!-- Main Picture -->
                     <div class="item">
-                        <img src="{{$room->main_picture}}" alt="">
+                        <img src="{{ asset( $room->main_picture) }}" alt="Main Picture of {{ $room->number }}">
                     </div>
+                    <!-- Additional Pictures -->
+                    @if($room->pictures)
+                        @foreach(json_decode($room->pictures, true) as $picture)
+                            <div class="item">
+                                <img src="{{ asset( $picture) }}" alt="Room Picture">
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div class="text-center mt-5">
-                <a class="btn_1 outline" data-fslightbox="gallery_1" data-type="image" href="{{  $room->main_picture }}">FullScreen Gallery</a>
+                <a class="btn_1 outline" data-fslightbox="gallery_1" data-type="image" href="{{ asset( $room->main_picture) }}">FullScreen Gallery</a>
+                <a data-fslightbox="gallery_1" data-type="image" href="{{ asset($room->main_picture) }}"></a>
+                @if($room->pictures)
+                    @foreach(json_decode($room->pictures, true) as $picture)
+                        <a data-fslightbox="gallery_1" data-type="image" href="{{ asset( $picture) }}"></a>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
+
 
     <!-- /bg_white -->
 
@@ -211,56 +209,34 @@
         </div>
         <!-- /reviews -->
 
-        <div class="bg_white">
-            <div class="container margin_120_95">
-                <div data-cue="slideInUp">
-                    <div class="title">
-                        <small>Paradise Hotel</small>
-                        <h2>Similar Rooms</h2>
-                    </div>
-                    <div class="row" data-cues="slideInUp" data-delay="800">
+    <div class="bg_white">
+        <div class="container margin_120_95">
+            <div data-cue="slideInUp">
+                <div class="title">
+                    <small>{{ $room->hotel_name }}</small>
+                    <h2>Similar Rooms</h2>
+                </div>
+                <div class="row" data-cues="slideInUp" data-delay="800">
+                    @foreach($similarRooms as $similarRoom)
                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <a href="room-list-1.html" class="box_cat_rooms">
+                            <a href="{{ route('hotel.room-details.show', $similarRoom->id) }}" class="box_cat_rooms">
                                 <figure>
-                                    <div class="background-image" data-background="url({{ asset('hotel_assets/img/rooms/1.jpg') }}"></div>
+                                    <div class="background-image" data-background="url({{ asset($similarRoom->main_picture) }})"></div>
                                     <div class="info">
-                                        <small>From $150/night</small>
-                                        <h3>Double Room</h3>
+                                        <small>From ${{ $similarRoom->price }}/night</small>
+                                        <h3>{{ $similarRoom->type }}</h3>
                                         <span>Read more</span>
                                     </div>
                                 </figure>
                             </a>
                         </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <a href="room-list-1.html" class="box_cat_rooms">
-                                <figure>
-                                    <div class="background-image" data-background="url({{ asset('hotel_assets/img/rooms/2.jpg') }}"></div>
-                                    <div class="info">
-                                        <small>From $190/night</small>
-                                        <h3>Deluxe Room</h3>
-                                        <span>Read more</span>
-                                    </div>
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <a href="room-list-1.html" class="box_cat_rooms">
-                                <figure>
-                                    <div class="background-image" data-background="url({{ asset('hotel_assets/img/rooms/3.jpg') }}"></div>
-                                    <div class="info">
-                                        <small>From $240/night</small>
-                                        <h3>Superior Room</h3>
-                                        <span>Read more</span>
-                                    </div>
-                                </figure>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /row-->
+                    @endforeach
                 </div>
             </div>
         </div>
-        <!-- /bg_white -->
+    </div>
+
+    <!-- /bg_white -->
 
         <div class="container margin_120_95" id="booking_section">
             <div class="row justify-content-between">

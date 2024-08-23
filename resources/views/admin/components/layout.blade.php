@@ -10,6 +10,7 @@
     <meta name="author" content="ThemeREX">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
     <!-- -------------- Fonts -------------- -->
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
@@ -18,10 +19,10 @@
 
     <!-- -------------- Icomoon -------------- -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/icomoon/icomoon.css') }}">
-
     <!-- -------------- FullCalendar -------------- -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/plugins/fullcalendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/plugins/magnific/magnific-popup.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets\allcp\forms\css\vendors.min.css') }}">
 
     <!-- -------------- Plugins -------------- -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/plugins/c3charts/c3.min.css') }}">
@@ -35,6 +36,7 @@
     <!-- -------------- Favicon -------------- -->
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
     @stack('room_index-css')
+    @stack('amenity_index-css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/allcp/forms/css/style.css') }}">
 
     <!-- -------------- IE8 HTML5 support  -------------- -->
@@ -243,7 +245,7 @@
 @if (session()->has('success'))
     <div x-data="{show: false }"
          x-show = "show"
-         x-init = "setTimeout(() => show = true, 10000)"
+         x-init = "setTimeout(() => show = true, 5000)"
     >
         <p class="session_p" style=" ">{{ session('success') }}</p>
     </div>
@@ -287,17 +289,20 @@
 
 <!-- -------------- Magnific Popup Plugin -------------- -->
 <script src="{{ asset('assets/js/plugins/magnific/jquery.magnific-popup.js') }}"></script>
-
 <!-- -------------- Theme Scripts -------------- -->
 <script src="{{ asset('assets/js/utility/utility.js') }}"></script>
 <script src="{{ asset('assets/js/demo/demo.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+@stack('amenities_create_js')
 @stack('room_index-js')
 @stack('register-js')
+
 <!-- -------------- Widget JS -------------- -->
 <script src="{{ asset('assets/js/demo/widgets.js') }}"></script>
 <script src="{{ asset('assets/js/demo/widgets_sidebar.js') }}"></script>
 <script src="{{ asset('assets/js/pages/dashboard1.js') }}"></script>
+@stack('room_create_js')
+
 <!-- -------------- /Scripts -------------- -->
 <script>
     tinymce.init({

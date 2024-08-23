@@ -34,20 +34,13 @@
                         <div class="box_item_info" data-jarallax-element="-25">
                             <small>From ${{ $room->price }}/night</small>
                             <h2>{{ $room->number }}</h2>
-                            <p> {{ $room->short_description }} </p>
+                            <p> {{ strip_tags($room->short_description) }} </p>
                             <div class="facilities clearfix">
                                 <ul>
-                                    @foreach(json_decode($room->amenities, true) as $index => $amenity)
-                                        @php
-                                            $icons = json_decode($room->amenity_icon, true);
-                                        @endphp
-                                        @if(isset($icons[$index]))
-                                            <li>
-                                                <i class="{{ $icons[$index] }}"></i> {{ $amenity }}
-                                            </li>
-                                        @else
-                                            <li>{{ $amenity }}</li>
-                                        @endif
+                                    @foreach($room->amenities as $amenity)
+                                        <li>
+                                            <i class="{{ $amenity->icon }}"></i> {{ $amenity->name }}
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>

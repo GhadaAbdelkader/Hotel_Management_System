@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminPanal;
+namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomUpdateRequest;
