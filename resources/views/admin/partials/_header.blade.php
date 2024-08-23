@@ -553,15 +553,15 @@
         </li>
         <li class="dropdown dropdown-fuse" style="  display: flex;">
 
-                @if (Auth::guest())
-                    <a href="/register" class="dropdown-toggle fw600">
-                        <span class="hidden-xs"><name>Register</name> </span>
-                    </a>
-                @else
-                    <a href="/dashboard" class="dropdown-toggle fw600">
-                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
-                    </a>
-                @endif
+{{--                @if (Auth::guest())--}}
+{{--                    <a href="/register" class="dropdown-toggle fw600">--}}
+{{--                        <span class="hidden-xs"><name>Register</name> </span>--}}
+{{--                    </a>--}}
+{{--                @else--}}
+{{--                    <a href="/dashboard" class="dropdown-toggle fw600">--}}
+{{--                        <span class="hidden-xs">{{ Auth::user()->name }}</span>--}}
+{{--                    </a>--}}
+{{--                @endif--}}
                 <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
                 <span class="hidden-xs"><name>Doug Adams</name> </span>
                 <span class="fa fa-caret-down hidden-xs mr15"></span>

@@ -1,3 +1,4 @@
+@props(['room', 'amenities'])
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -52,7 +53,6 @@
 
 <!-- -------------- Body Wrap  -------------- -->
 <main>
-
 
         {{ $slot }}
 

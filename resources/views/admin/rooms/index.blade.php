@@ -26,7 +26,6 @@
                                 <th>Number</th>
                                 <th>Type</th>
                                 <th>Size</th>
-                                <th>Amenities</th>
                                 <th>Main Picture</th>
                                 <th>Pictures</th>
                                 <th>Capacity</th>
@@ -42,7 +41,6 @@
                                     <td>{{ $room->number }}</td>
                                     <td>{{ $room->type }}</td>
                                     <td>{{ $room->size }}</td>
-                                    <td>{{ implode(', ', json_decode($room->amenities, true)) }}</td>
                                     <td><img src="{{ asset( $room->main_picture) }}" alt="Main Picture" width="100">
                                     </td>
                                     <td>
@@ -59,10 +57,10 @@
                                     <td>${{ $room->price }}</td>
                                     <td>
                                         <div style="display: flex;">
-                                            <a href="{{ route('rooms.edit', $room->id) }}"
+                                            <a href="{{ route('admin.rooms.edit', $room->id) }}"
                                                class="btn btn-info ph8 pv5 dark mr5" style="color:#fff !important"> <i
                                                         class="fa fa-edit"></i></a>
-                                            <form action="{{ route('rooms.destroy', $room->id) }}" method="POST"
+                                            <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST"
                                                   style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')

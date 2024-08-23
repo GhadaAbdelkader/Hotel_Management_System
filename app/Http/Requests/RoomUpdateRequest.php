@@ -20,14 +20,14 @@ class RoomUpdateRequest extends FormRequest
             'size' => 'required',
             'room_description' => 'required|string',
             'short_description' => 'required|string',
-            'amenities' => 'required|array',
-            'amenity_icon' => 'required|array',
             'main_picture' => 'image|required',
             'pictures.*' => 'required|image',
             'adult_capacity' => 'required|integer|min:1',
             'child_capacity' => 'required|integer|min:1',
             'status' => 'required',
-            'price' => 'required|integer',
+            'price' => 'required|numeric|min:0|max:99999999',
+            'amenities' => 'sometimes|array',
+            'amenities.*' => 'exists:amenities,id',
         ];
     }
 }

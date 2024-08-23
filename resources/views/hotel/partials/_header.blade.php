@@ -9,6 +9,24 @@
                 <nav>
                     <ul>
                         <li><a href="#booking_section" class="btn_1 me-1 btn_scrollto">Book Now</a></li>
+{{--                        @if (Auth::user())--}}
+{{--                            <li>--}}
+{{--                                <figure>--}}
+{{--                                </figure>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
+                        @if (Auth::user())
+                            <!-- Show account link and logout link if the user is authenticated -->
+                            <li><a href="{{ route('account.show') }}" class="btn_1 me-1 btn_scrollto"><img src="{{ asset('hotel_assets/img/testimonial_1.jpg') }}" alt="" class="img-circle"></a></li>
+                            <li> <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit">Logout</button>
+                                </form></li>
+                        @else
+                            <!-- Show register link if the user is not authenticated -->
+                            <li><a href="{{ route('register.create') }}">Register</a></li>
+                        @endif
+
                         <li>
                             <div class="hamburger_2 open_close_nav_panel">
                                 <div class="hamburger__box">

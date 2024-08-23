@@ -35,8 +35,7 @@ class Functions
     public static function prepareRoomAttributes($request)
     {
         return [
-            'amenities' => json_encode($request->input('amenities')),
-            'amenity_icon' => json_encode($request->input('amenity_icon')),
+            'amenity_ids' => json_encode($request->input('amenities', [])),
             'pictures' => json_encode($request->input('pictures')),
             'capacity' => json_encode([
                 'adult' => $request->input('adult_capacity'),

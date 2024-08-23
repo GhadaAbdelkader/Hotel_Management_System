@@ -1,0 +1,45 @@
+ <div class="section row">
+                            <div class="col-md-6 ph10 mb5">
+                                <label class="field select" for="name">
+                                    <select id="name" name="name">
+                                        <option value="">Select language...</option>
+                                        <option value="King Size Bed">King Size Bed</option>
+                                        <option value="Safety Box">Safety Box</option>
+                                        <option value="Balcony">Balcony</option>
+                                        <option value="32 Inch T">32 Inch T</option>
+                                        <option value="Disable Access">Disable Access</option>
+                                        <option value="Pet Allowed">Pet Allowed</option>
+                                        <option value="Welcome Bottle">Welcome Bottle</option>
+                                        <option value="Wifi / Netflix access">Wifi / Netflix access</option>
+                                        <option value="Air Dryer"> Air Dryer</option>
+                                        <option value="Air Condition">Air Condition</option>
+                                        <option value="Loundry Service">Loundry Service</option>
+                                    </select>
+                                    <i class="arrow double"></i>
+                                </label>
+                                @error('name')
+                                <p class="text-danger mn">{{ $message }}</p>
+
+                                @enderror
+                            </div>
+                            <div class="col-md-6 ph10 mb5">
+                                <label class="field select" for="icon">
+                                    <select id="icon" name="icon">
+                                        <option value="">Select Icon...</option>
+                                        <option value="icon-hotel-double_bed_2"><i class="icon-hotel-double_bed_2"></i> King Size Bed<i class="icon-hotel-double_bed_2"></i></option><i class="icon-hotel-double_bed_2"></i>
+                                        <option value="icon-hotel-safety_box"><i class="icon-hotel-safety_box"></i> Safety Box</option>
+                                        <option value="icon-hotel-patio">Balcony</option><i class="icon-hotel-patio"></i>
+                                        <option value="icon-hotel-tv"><i class="icon-hotel-tv"></i>32 Inch T</option>
+                                        <option value="icon-hotel-disable"><i class="icon-hotel-disable"></i>Disable Access</option>
+                                        <option value="icon-hotel-dog"><i class="icon-hotel-dog"></i>Pet Allowed</option>
+                                        <option value="icon-hotel-bottle"><i class="icon-hotel-bottle"></i>Welcome Bottle</option>
+                                        <option value="icon-hotel-wifi"><i class="icon-hotel-wifi"></i>Wifi / Netflix access</option>
+                                        <option value="icon-hotel-hairdryer"> <i class="icon-hotel-hairdryer"></i>Air Dryer</option>
+                                        <option value="icon-hotel-condition"><i class="icon-hotel-condition"></i>Air Condition</option>
+                                        <option value="icon-hotel-loundry"><i class="icon-hotel-loundry"></i>Loundry Service</option>
+                                    </select>
+                                    <i class="arrow double"></i>
+                                </label>
+                            </div>
+
+                        </div>

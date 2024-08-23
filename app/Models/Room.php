@@ -10,13 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $number
  * @property string $type
  * @property string $size
- * @property array $amenities
- * @property array $amenity_icon
  * @property array $capacity
  * @property string $status
  * @property string $main_picture
  * @property array $pictures
- * @property float $price
+ * @property integer $price
  */
 class Room extends Model
 {
@@ -27,7 +25,6 @@ class Room extends Model
         'number',
         'type',
         'size',
-        'amenities',
         'capacity',
         'status',
         'main_picture',
@@ -36,9 +33,11 @@ class Room extends Model
         'hotel_name',
         'room_description',
         'short_description',
-        'amenity_icon',
+        'amenity_ids'
     ];
-
+//    protected $casts = [
+//        'amenity_ids' => 'array', // Ensures amenity_ids is treated as an array
+//    ];
     public function roomRates()
     {
         return $this->hasMany(RoomRate::class);
@@ -57,5 +56,9 @@ class Room extends Model
     public function maintenance()
     {
         return $this->hasMany(Maintenance::class);
+    }
+    public function amenities()
+    {
+        return $this->hasMany(Amenity::class);
     }
 }
