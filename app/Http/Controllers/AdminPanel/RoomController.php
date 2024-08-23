@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminPanal;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomUpdateRequest;
+use App\Models\Amenity;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use App\Http\Services\Functions;
@@ -25,16 +26,13 @@ class RoomController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-
 
 //* Store a newly created resource in storage.
 
     public function create(): View
     {
-        return view('admin.rooms.create');
+        $amenities = Amenity::all();
+        return view('admin.rooms.create', compact('amenities'));
     }
 
     /**
@@ -49,16 +47,19 @@ class RoomController extends Controller
         $attributes = $request->validated();
         $attributes = array_merge($attributes, Functions::prepareRoomAttributes($request));
         $Room = Room::create($attributes);
-
         (new \App\Http\Services\Functions)->handleImageUploads($request, $Room);
-        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room created successfully.');
     }
 
 
     public function edit(Room $room): View
     {
-        return view('admin.rooms.edit', compact('room'));
-    }
+        $selectedAmenities = json_decode($room->amenity_ids, true);
+//dd($selectedAmenities);
+        // Fetch all amenities to display in the form
+        $amenities = Amenity::all();
+
+        return view('admin.rooms.edit', compact('room', 'amenities', 'selectedAmenities'));    }
     /**
      * Update the specified resource in storage.
      */
@@ -77,7 +78,7 @@ class RoomController extends Controller
         // Handle image uploads
         (new \App\Http\Services\Functions)->handleImageUploads($request, $room);
 
-        return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room updated successfully.');
     }
 
     /**
@@ -87,7 +88,7 @@ class RoomController extends Controller
     {
         $room->delete();
 
-        return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
+        return redirect()->route('admin.rooms.index')->with('success', 'Room deleted successfully.');
     }
 
     /**
