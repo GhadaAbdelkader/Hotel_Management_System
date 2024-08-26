@@ -115,12 +115,11 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="custom_select">
-                                    <select class="wide">
+                                    <select class="wide" name="room_type">
                                         <option>Select Room</option>
-                                        <option>Double Room</option>
-                                        <option>Deluxe Room</option>
-                                        <option>Superior Room</option>
-                                        <option>Junior Suite</option>
+                                        @foreach($rooms as $room)
+                                            <option value="{{ $room->id }}">{{ $room->type }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -136,22 +135,20 @@
                                     <div class="col-6">
                                         <div class="mb-3 qty-buttons mb-3 version_2">
                                             <input type="button" value="+" class="qtyplus" name="childs_booking">
-                                            <input type="text" name="childs_booking" id="childs_booking" value="" class="qty form-control" placeholder="Childs">
+                                            <input type="text" name="childs_booking" id="childs_booking" value="" class="qty form-control" placeholder="Children">
                                             <input type="button" value="-" class="qtyminus" name="childs_booking">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <p class="text-end mt-5"><button type="submit" class="btn_1 outline">Book Now</button></p>
                     </div>
-                    <!-- / row -->
-                    <p class="text-end mt-5"><a href="#0" class="btn_1 outline">Book Now</a></p>
                 </div>
             </div>
-            <!-- /col -->
         </div>
-        <!-- /row -->
     </div>
+
     <!-- /container -->
 
     <!-- /container -->

@@ -2,7 +2,6 @@
 
 
 
-
     <!-- -------------- Body Wrap  -------------- -->
     <div id="main" class="animated fadeIn">
 
@@ -22,8 +21,9 @@
                                                        alt="Logo"/></div>
                     <div class="panel mw320">
 
-                            <form method="POST" action="{{ route('login') }}"  id="form-login">
-                                @csrf
+                        <form method="POST" action="{{ route('login.admin.post') }}" id="form-login">
+                            @csrf
+                                <input type="hidden" name="login_as" value="admin">
                             <div class="panel-body pn mv10">
 
                                 <div class="section">
@@ -34,6 +34,10 @@
                                             <i class="fa fa-user"></i>
                                         </label>
                                     </label>
+                                    @error('email')
+                                    <p class="text-danger mn">{{ $message }}</p>
+
+                                    @enderror
                                 </div>
                                 <!-- -------------- /section -------------- -->
 
@@ -45,6 +49,10 @@
                                             <i class="fa fa-lock"></i>
                                         </label>
                                     </label>
+                                    @error('password')
+                                    <p class="text-danger mn">{{ $message }}</p>
+
+                                    @enderror
                                 </div>
                                 <!-- -------------- /section -------------- -->
 

@@ -37,27 +37,27 @@
                 <div class="col-xl-7 col-lg-7 order-lg-1">
                     <h3 class="mb-3">Be Our Guest</h3>
                     <div id="message-contact"></div>
-                    <form method="post" action="{{ route('register.store') }}"  >
+                    <form method="post" action="/register"  >
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating mb-4">
-                                    <input class="form-control" type="text" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                                    <input class="form-control" type="text" id="name" name="name" placeholder="Name" value="{{ old('name') }}" required>
                                     <label for="name">Name</label>
-{{--                                    @error('name')--}}
-{{--                                    <p class="text-danger mn">{{ $message }}</p>--}}
+                                    @error('name')
+                                    <p class="text-danger mn">{{ $message }}</p>
 
-{{--                                    @enderror--}}
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating mb-4">
-                                    <input class="form-control" type="text" id="username" name="username" placeholder="Username" value="{{ old('username') }}">
+                                    <input class="form-control" type="text" id="username" name="username" placeholder="Username" value="{{ old('username') }}" required>
                                     <label for="username">Username</label>
-{{--                                    @error('username')--}}
-{{--                                    <p class="text-danger mn">{{ $message }}</p>--}}
+                                    @error('username')
+                                    <p class="text-danger mn">{{ $message }}</p>
 
-{{--                                    @enderror--}}
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -65,22 +65,22 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating mb-4">
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
                                     <label for="email">Email</label>
-{{--                                    @error('email')--}}
-{{--                                    <p class="text-danger mn">{{ $message }}</p>--}}
+                                    @error('email')
+                                    <p class="text-danger mn">{{ $message }}</p>
 
-{{--                                    @enderror--}}
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating mb-4">
-                                    <input class="form-control" type="text" id="phone" name="phone" placeholder="Telephone" value="{{ old('phone') }}">
+                                    <input class="form-control" type="text" id="phone" name="phone" placeholder="Telephone" value="{{ old('phone') }}" required>
                                     <label for="phone">Telephone</label>
-{{--                                    @error('phone')--}}
-{{--                                    <p class="text-danger mn">{{ $message }}</p>--}}
+                                    @error('phone')
+                                    <p class="text-danger mn">{{ $message }}</p>
 
-{{--                                    @enderror--}}
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -89,24 +89,24 @@
                             <div class="col-sm-6">
 
                             <div class="form-floating mb-4">
-                            <input class="form-control" type="password" id="password" name="password" placeholder="Password">
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
                             <label for="password">Password</label>
-{{--                                @error('password')--}}
-{{--                                <p class="text-danger mn">{{ $message }}</p>--}}
+                                @error('password')
+                                <p class="text-danger mn">{{ $message }}</p>
 
-{{--                                @enderror--}}
+                                @enderror
                         </div>
                             </div>
 
                             <div class="col-sm-6">
 
                                 <div class="form-floating mb-4">
-                            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
                             <label for="confirmPassword">Confirm Password</label>
-{{--                                    @error('confirmPassword')--}}
-{{--                                    <p class="text-danger mn">{{ $message }}</p>--}}
+                                    @error('confirmPassword')
+                                    <p class="text-danger mn">{{ $message }}</p>
 
-{{--                                    @enderror--}}
+                                    @enderror
                         </div>
                                 </div>
 
