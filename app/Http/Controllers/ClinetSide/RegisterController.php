@@ -11,7 +11,7 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        return view('hotel.register.create');
+        return view('hotel.auth.register');
     }
 
     public function store(RegisterRequest $request)
@@ -22,16 +22,16 @@ class RegisterController extends Controller
         $user = User::create($attributes);
 //        dd($attributes);
         Auth::login($user);
-        return redirect()->route('register.show')->with('success', 'Your account created successfully.');
+        return  view('hotel.home')->with('success', 'Your account created successfully.');
 
 
 
     }
 
-    public function show()
-    {
-        $user = auth()->user();
-        return view('register.show', compact('user'));
-    }
+//    public function show()
+//    {
+//        $user = auth()->user();
+//        return view('register.show', compact('user'));
+//    }
 }
 

@@ -56,9 +56,11 @@
                                     <div class="form-group">
                                         <label for="type">Type</label>
                                         <select name="type" id="type" class="form-control">
-                                            <option value="Single">Single</option>
-                                            <option value="Double">Double</option>
-                                            <option value="Suite">Suite</option>
+                                            <option >Select Room</option>
+                                            <option value="Double Room">Double Room</option>
+                                            <option value="Deluxe Room">Deluxe Room</option>
+                                            <option value="Superior Room">Superior Room</option>
+                                            <option value="Junior Suite">Junior Suite</option>
                                         </select>
                                         @error('type')
                                         <p class="text-danger mn">{{ $message }}</p>

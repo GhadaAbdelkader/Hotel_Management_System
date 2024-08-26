@@ -17,7 +17,12 @@
                         <div class="media-links">
                             <a href="#" class="sidebar-menu-toggle">User Menu -</a>
                             @if (Auth::guest())
-                                <a href="{{ route('login') }}">Login</a>
+                                <form id="login-form" action="{{ route('login.admin.post') }}" method="POST"  style="display:inline;">
+                                    @csrf
+                                    <input type="hidden" name="login_as" value="admin">
+
+                                    <a href="{{ route('login.admin.post') }}" >Login</a>
+                                </form>
                             @else
                                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 

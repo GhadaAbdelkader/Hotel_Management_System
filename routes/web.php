@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminPanel\AdminController;
 use App\Http\Controllers\AdminPanel\AmenityController;
 use App\Http\Controllers\AdminPanel\GuestController;
 use App\Http\Controllers\AdminPanel\RoomController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,19 +22,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('amenities', AmenityController::class);
 });
 
-// Route for showing the login form
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-
-// Route for handling the login request
-Route::post('login', [LoginController::class, 'login']);
 
 // Route for logging out
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('logout', [LoginAdminController::class, 'adminLogout'])->name('logout');
 
 
 
+Route::get('admin/login', function () {
+    return view('admin.auth.login', ['loginAs' => 'admin']);
+})->name('login.admin');
 
-
-
+// Route to handle admin login request
+Route::post('admin/login', [LoginAdminController::class, 'loginSubmit'])->name('login.admin.post');
 
 

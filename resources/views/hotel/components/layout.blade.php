@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
     <title>PARADISE - Hotel and Bed&Breakfast Site Template</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{ asset('hotel_assets/img/favicon.ico') }}" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon"

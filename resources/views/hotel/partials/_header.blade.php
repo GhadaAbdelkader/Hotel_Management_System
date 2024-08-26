@@ -15,17 +15,36 @@
 {{--                                </figure>--}}
 {{--                            </li>--}}
 {{--                        @endif--}}
-                        @if (Auth::user())
-                            <!-- Show account link and logout link if the user is authenticated -->
-                            <li><a href="{{ route('account.show') }}" class="btn_1 me-1 btn_scrollto"><img src="{{ asset('hotel_assets/img/testimonial_1.jpg') }}" alt="" class="img-circle"></a></li>
-                            <li> <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit">Logout</button>
-                                </form></li>
+                        @if (Auth::guard('clientSide')->check())  <!-- Check if user is authenticated with clientSide guard -->
+                        @php
+                            $user = Auth::guard('clientSide')->user();
+                        @endphp
+
+                        @if ($user->role === 'guest')  <!-- Check if the user role is guest -->
+                        <!-- Show logout and profile links for guest users -->
+                    {{$user->role}}
+                        <li>
+                            <form id="logout-form" action="{{ route('logout.hotel') }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn_1 me-1 btn_scrollto">Logout</button>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="/profile" class="btn_1 me-1 btn_scrollto" style="padding: 5px;line-height: 0;">
+                                <i class="bi-person-circle" style="font-size: 23px;"></i>
+                            </a>
+                        </li>
                         @else
-                            <!-- Show register link if the user is not authenticated -->
-                            <li><a href="{{ route('register.create') }}">Register</a></li>
+                            <!-- Show login and register links if user is authenticated but not a guest -->
+                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
+                            <li><a href="/register">Register</a></li>
                         @endif
+                        @else
+                            <!-- Show login and register links if the user is not authenticated -->
+                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
+                            <li><a href="/register">Register</a></li>
+                        @endif
+
 
                         <li>
                             <div class="hamburger_2 open_close_nav_panel">
