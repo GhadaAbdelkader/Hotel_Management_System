@@ -41,10 +41,10 @@ return [
             'provider' => 'users',
         ],
 
-        'clientSide' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+//        'clientSide' => [
+//            'driver' => 'session',
+//            'provider' => 'users',
+//        ],
     ],
 
 

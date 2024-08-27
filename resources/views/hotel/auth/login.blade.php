@@ -15,7 +15,11 @@
 
             <!-- -------------- Content -------------- -->
             <section id="content">
-
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <!-- -------------- Login Form -------------- -->
                 <div class="allcp-form theme-primary mw320" id="login">
                     <div class="text-center mb20"><img src="{{ asset('assets/img/logo_login_form.png') }}" class="img-responsive"

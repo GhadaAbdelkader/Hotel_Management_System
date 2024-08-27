@@ -6,10 +6,11 @@ use App\Http\Controllers\AdminPanel\GuestController;
 use App\Http\Controllers\AdminPanel\RoomController;
 use App\Http\Controllers\Auth\LoginAdminController;
 use Illuminate\Support\Facades\Route;
+Route::middleware('web')->group(function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('adminCheck');
 
 
 
@@ -35,4 +36,4 @@ Route::get('admin/login', function () {
 // Route to handle admin login request
 Route::post('admin/login', [LoginAdminController::class, 'loginSubmit'])->name('login.admin.post');
 
-
+});

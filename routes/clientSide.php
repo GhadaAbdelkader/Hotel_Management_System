@@ -2,10 +2,11 @@
 use App\Http\Controllers\Auth\LoginGuestController;
 use App\Http\Controllers\ClinetSide\HotelController;
 use App\Http\Controllers\ClinetSide\RegisterController;
+use App\Http\Middleware\GuestCheck;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/hotel', [HotelController::class, 'showHotelPage'])->name('hotel');
+Route::middleware('web')->group(function () {
+Route::get('/hotel', [HotelController::class, 'showHotelPage'])->name('hotel')->middleware('guest');
 Route::get('/hotel/room-list', [HotelController::class, 'room_list'])->name('hotel.room_list.room_list');
 Route::get('/hotel/room-details/{id}', [HotelController::class, 'show'])->name('hotel.room-details.show');
 
@@ -27,4 +28,4 @@ Route::post('client/login', [LoginGuestController::class, 'loginSubmit'])->name(
 // Route for logging out
 Route::post('/clientLogout', [LoginGuestController::class, 'clientLogout'])->name('logout.hotel');
 
-
+});

@@ -16,44 +16,21 @@ class LoginGuestController extends Controller
 
     public function loginSubmit(Request $request){
 
-        $request->validate([
-                'email'=>'required|email',
-                'password'=>'required',
+        $attributes = $request->validate([
+            'email'=>'required|email',
+            'password'=>'required'
             ]
-        );
-
-        $input = $request->all();
-        $data = [
-            'email' => $input['email'],
-            'password' => $input['password']
-        ];
-
-
+            );
         // check if the given user exists in db
-        if(Auth::guard('clientSide')->attempt(['email'=> $data['email'], 'password'=> $data['password']])){
-//            session()->regenerate();
+            if(Auth::attempt($attributes)){
             // check the user role
-            if(Auth::guard('clientSide')->user()->role == 'guest'){
-//                dd(Auth::guard('clientSide')->user()->role);
-                session()->regenerate();
                 return redirect('/hotel');
-            }else{
-                return redirect()->route('login.client.post')->with('error', "You dont have permission to access");
             }
+               return redirect()->route('login.client.post')->with('error', "You dont have permission to access");
         }
-        else{
-            return redirect()->route('login.client.post')->with('error', "Wrong credentials");
-        }
-
-
-
-    }
-
     public function clientLogout(Request $request)
     {
-        session()->regenerate();
-
-        Auth::guard('clientSide')->logout(); // Logout only from clientSide
+        Auth::logout();
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

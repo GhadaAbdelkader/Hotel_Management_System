@@ -9,41 +9,27 @@
                 <nav>
                     <ul>
                         <li><a href="#booking_section" class="btn_1 me-1 btn_scrollto">Book Now</a></li>
-{{--                        @if (Auth::user())--}}
-{{--                            <li>--}}
-{{--                                <figure>--}}
-{{--                                </figure>--}}
-{{--                            </li>--}}
-{{--                        @endif--}}
-                        @if (Auth::guard('clientSide')->check())  <!-- Check if user is authenticated with clientSide guard -->
-                        @php
-                            $user = Auth::guard('clientSide')->user();
-                        @endphp
+                        @if (Auth::guest())
+                            Guest
+                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
+                            <li><a href="/register">Register</a></li>
+                @else
+                    {{ Auth::user()->name }}
+                            <li>
+                                <form id="logout-form" action="{{ route('logout.hotel') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn_1 me-1 btn_scrollto">Logout</button>
+                                </form>
+                            </li>
+                            <li>
+                                <a href="/profile" class="btn_1 me-1 btn_scrollto" style="padding: 5px;line-height: 0;">
+                                    <i class="bi-person-circle" style="font-size: 23px;"></i>
+                                </a>
+                            </li>
+                @endif
 
-                        @if ($user->role === 'guest')  <!-- Check if the user role is guest -->
-                        <!-- Show logout and profile links for guest users -->
-                    {{$user->role}}
-                        <li>
-                            <form id="logout-form" action="{{ route('logout.hotel') }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn_1 me-1 btn_scrollto">Logout</button>
-                            </form>
-                        </li>
-                        <li>
-                            <a href="/profile" class="btn_1 me-1 btn_scrollto" style="padding: 5px;line-height: 0;">
-                                <i class="bi-person-circle" style="font-size: 23px;"></i>
-                            </a>
-                        </li>
-                        @else
-                            <!-- Show login and register links if user is authenticated but not a guest -->
-                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
-                            <li><a href="/register">Register</a></li>
-                        @endif
-                        @else
-                            <!-- Show login and register links if the user is not authenticated -->
-                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
-                            <li><a href="/register">Register</a></li>
-                        @endif
+
+
 
 
                         <li>
