@@ -14,36 +14,17 @@ class LoginAdminController extends Controller
     }
 
     public function loginSubmit(Request $request){
-
-        $request->validate([
+        $attributes = $request->validate([
                 'email'=>'required|email',
                 'password'=>'required'
             ]
         );
-
-        $input = $request->all();
-        $data = [
-            'email' => $input['email'],
-            'password' => $input['password']
-        ];
-
-
         // check if the given user exists in db
-        if(Auth::guard('web')->attempt(['email'=> $data['email'], 'password'=> $data['password']])){
-            $request->session()->regenerate();
+        if(Auth::attempt($attributes)){
             // check the user role
-            if(Auth::user()->role == 'admin'){
-                return view('welcome');
-            }else{
-                return redirect()->route('login.admin.post')->with('error', "You dont have permission to access");
+                return redirect('/');
             }
-        }
-        else{
-            return redirect()->route('login.admin.post')->with('error', "Wrong credentials");
-        }
-
-
-
+                return redirect()->route('login.admin.post')->with('error', "You dont have permission to access");
     }
 
     public function adminLogout(Request $request)
