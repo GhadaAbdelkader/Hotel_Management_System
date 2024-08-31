@@ -28,10 +28,10 @@ class RegisterController extends Controller
 
     }
 
-//    public function show()
-//    {
-//        $user = auth()->user();
-//        return view('register.show', compact('user'));
-//    }
+    public function show()
+    {
+        $user = auth()->user();
+        return view('hotel.auth.profile', compact('user'));
+    }
 }
 

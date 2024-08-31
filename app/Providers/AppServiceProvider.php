@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         // New component registration
         Blade::component('hotel.components.layout', 'hotel-layout');
 
-        // Include the clientSide.php routes
-        $this->loadRoutesFrom(base_path('routes/clientSide.php'));
+        // Include the client.php routes
+        $this->loadRoutesFrom(base_path('routes/client.php'));
     }
 }

@@ -2,19 +2,14 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-6">
-                <a href="later/index-2.html" class="logo_normal"><img src="{{ asset('hotel_assets/img/logo.png') }}" width="135" height="45" alt=""></a>
-                <a href="later/index-2.html" class="logo_sticky"><img src="{{ asset('hotel_assets/img/logo_sticky.png') }}" width="135" height="45" alt=""></a>
+                <a href="/hotel" class="logo_normal"><img src="{{ asset('hotel_assets/img/logo.png') }}" width="135" height="45" alt=""></a>
+                <a href="/hotel" class="logo_sticky"><img src="{{ asset('hotel_assets/img/logo_sticky.png') }}" width="135" height="45" alt=""></a>
             </div>
             <div class="col-6">
                 <nav>
                     <ul>
                         <li><a href="#booking_section" class="btn_1 me-1 btn_scrollto">Book Now</a></li>
-                        @if (Auth::guest())
-                            Guest
-                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
-                            <li><a href="/register">Register</a></li>
-                @else
-                    {{ Auth::user()->name }}
+                        @if (Auth::check() && Auth::user()->role == 'guest')
                             <li>
                                 <form id="logout-form" action="{{ route('logout.hotel') }}" method="POST" style="display:inline;">
                                     @csrf
@@ -26,6 +21,10 @@
                                     <i class="bi-person-circle" style="font-size: 23px;"></i>
                                 </a>
                             </li>
+
+                @else
+                            <li><a href="{{ route('login.client.post') }}">Login</a></li>
+                            <li><a href="/register">Register</a></li>
                 @endif
 
 

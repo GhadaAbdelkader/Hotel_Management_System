@@ -16,27 +16,30 @@
                     <div class="media-body">
                         <div class="media-links">
                             <a href="#" class="sidebar-menu-toggle">User Menu -</a>
-                            @if (Auth::guest())
+                            @if (Auth::check() && Auth::user()->role == 'admin')
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @else
+
                                 <form id="login-form" action="{{ route('login.admin.post') }}" method="POST"  style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="login_as" value="admin">
 
                                     <a href="{{ route('login.admin.post') }}" >Login</a>
                                 </form>
-                            @else
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                             @endif
                         </div>
                         <div class="media-author">
 
-                            @if (Auth::guest())
-                                Guest
-                            @else
+                            @if (Auth::check() && Auth::user()->role == 'admin')
                                 {{ Auth::user()->name }}
+
+                            @else
+                                Guest
+{{--                                {{ Auth::user()->role }}--}}
                             @endif</div>
 
                         </div>
@@ -93,7 +96,7 @@
             <li class="sidebar-label pt30">Menu</li>
 
             <li>
-                <a href="/">
+                <a href="/Home">
                     <span class="fa fa-dashboard"></span>
                     <span class="sidebar-title">Dashboard</span>
                 </a>
@@ -105,8 +108,7 @@
                 </a>
             </li>
             <li class="sidebar-label pt25">Tools</li>
-            @if (Auth::user())
-
+            @if (Auth::check() && Auth::user()->role == 'admin')
             <li>
                     <a class="accordion-toggle" href="#">
                         <span class="fa fa-desktop"></span>

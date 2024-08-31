@@ -16,10 +16,14 @@ class GuestCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role == 'guest'){
-            return $next($request);
-
+        if (Auth::check()) {
+            // User is logged in, check the role
+            if (Auth::user()->role !== 'guest') {
+                // If the user is not a guest, redirect with an error message
+                return redirect('/hotel')->with('error', 'You are not registered as a guest.');
+            }
         }
-        return  redirect()->route('login.client.post')->with('error', 'You are not authorized to access this page');
+        // If user is not logged in or is a guest, proceed
+        return $next($request);
     }
 }

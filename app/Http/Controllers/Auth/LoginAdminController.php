@@ -14,86 +14,44 @@ class LoginAdminController extends Controller
     }
 
     public function loginSubmit(Request $request){
+//        dd('test');
         $attributes = $request->validate([
                 'email'=>'required|email',
                 'password'=>'required'
             ]
         );
+
         // check if the given user exists in db
         if(Auth::attempt($attributes)){
             // check the user role
-                return redirect('/');
+//            Auth::guard('web')->login($uesr);
+            $request->session()->regenerate();
+
+            return redirect('/Home');
             }
                 return redirect()->route('login.admin.post')->with('error', "You dont have permission to access");
     }
 
     public function adminLogout(Request $request)
     {
-        Auth::guard('web')->logout(); // Logout only from admin
-        $request->session()->invalidate();
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            // Logout the user if they are an admin
+            Auth::logout();
 
-        $request->session()->regenerateToken();
+            // Invalidate the session
+            $request->session()->invalidate();
 
-        return redirect('/');
+            // Regenerate the CSRF token
+
+            // Redirect to a specific page after logout
+            return redirect('/Home')->with('status', 'Admin logged out successfully.');
+        }
+
+        // If the user is not an admin, redirect them with an error message
+        return redirect('/admin/dashboard')->with('error', 'You are not authorized to perform this action.');
     }
 
 
-    // Show the login form for the admin panel or general users
-//    public function showLoginForm()
-//    {
-//
-//        return view('hotel.auth.login');
-//    }
-//
-//    // Handle login for admin panel or general users
-//    public function login(Request $request)
-//    {
-//        $credentials = $request->validate([
-//            'email' => ['required', 'email'],
-//            'password' => ['required'],
-//            'login_as' => ['required', 'in:admin,clientSide']
-//        ]);
-//
-//        $loginAs = $credentials['login_as'];
-//        unset($credentials['login_as']);
-//
-//        if ($loginAs === 'admin') {
-//            if (Auth::guard('web')->attempt($credentials)) {
-//                $request->session()->regenerate();
-//                return redirect()->intended('/');
-//            }
-//        } elseif ($loginAs === 'clientSide') {
-//            if (Auth::guard('clientSide')->attempt($credentials)) {
-//                $request->session()->regenerate();
-//                return redirect()->intended('/hotel');
-//            }
-//        }
-//
-//        return back()->withErrors([
-//            'email' => 'The provided credentials do not match our records.',
-//        ]);
-//    }
-//
-//    // Handle logout for the web guard
-//    public function logout(Request $request)
-//    {
-//        Auth::guard('web')->logout();
-//
-//        $request->session()->invalidate();
-//        $request->session()->regenerateToken();
-//
-//        return redirect('/');
-//    }
-//
-//
-//    // Handle logout for client-side users
-//    public function clientLogout(Request $request)
-//    {
-//        Auth::guard('clientSide')->logout();
-//
-//        $request->session()->invalidate();
-//        $request->session()->regenerateToken();
-//
-//        return redirect('/hotel'); // Redirect to the hotel page after logout
-//    }
+
+
 }
