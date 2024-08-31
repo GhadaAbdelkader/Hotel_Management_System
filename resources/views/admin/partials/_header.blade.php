@@ -563,7 +563,15 @@
 {{--                    </a>--}}
 {{--                @endif--}}
                 <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
-                <span class="hidden-xs"><name>Doug Adams</name> </span>
+                <span class="hidden-xs">
+                    <name>
+                         @if (Auth::check() && Auth::user()->role == 'admin')
+                            {{ Auth::user()->name }}
+                        @else
+                            Guest
+                            @endif
+                    </name>
+                </span>
                 <span class="fa fa-caret-down hidden-xs mr15"></span>
                 <img src="assets/img/avatars/profile_avatar.jpg" alt="avatar" class="mw55">
             </a>

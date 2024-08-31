@@ -5,7 +5,7 @@
         <div class="wrapper opacity-mask d-flex align-items-center justify-content-center text-center animate_hero" data-opacity-mask="rgba(0, 0, 0, 0.5)">
             <div class="container">
                 <small class="slide-animated one">Luxury Hotel Experience</small>
-                <h1 class="slide-animated two">Register</h1>
+                <h1 class="slide-animated two">your account information</h1>
             </div>
         </div>
     </div>

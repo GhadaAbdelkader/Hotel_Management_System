@@ -16,10 +16,11 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role == 'admin'){
+//        dd(Auth::check());
+        if(Auth::check() && Auth::user()->role == 'admin' ){
             return $next($request);
 
         }
-        return  redirect()->route('login.admin.post')->with('error', 'You are not authorized to access this page');
+        return  redirect()->route('login.admin.post')->with('error', 'You are not authorized ,,,,,to access this page');
     }
 }

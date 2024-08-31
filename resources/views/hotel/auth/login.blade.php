@@ -1,89 +1,70 @@
-<x-register_layout>
+<x-hotel-layout>
 
 
-
-
-    <!-- -------------- Body Wrap  -------------- -->
-    <div id="main" class="animated fadeIn">
-
-        <!-- -------------- Main Wrapper -------------- -->
-        <section id="content_wrapper">
-
-            <div id="canvas-wrapper">
-                <canvas id="demo-canvas"></canvas>
+<div class="hero medium-height jarallax" data-jarallax data-speed="0.2">
+        <img class="jarallax-img" src="{{ asset('hotel_assets/img/hero_home_2.jpg') }}" alt="">
+        <div class="wrapper opacity-mask d-flex align-items-center justify-content-center text-center animate_hero" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+            <div class="container">
+                <small class="slide-animated one">Luxury Hotel Experience</small>
+                <h1 class="slide-animated two">Login</h1>
             </div>
-
-            <!-- -------------- Content -------------- -->
-            <section id="content">
-                @if(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                <!-- -------------- Login Form -------------- -->
-                <div class="allcp-form theme-primary mw320" id="login">
-                    <div class="text-center mb20"><img src="{{ asset('assets/img/logo_login_form.png') }}" class="img-responsive"
-                                                       alt="Logo"/></div>
-                    <div class="panel mw320">
-
-                        <form method="POST" action="{{ route('login.client.post') }}" id="form-login">
-                            @csrf
-                                <input type="hidden" name="login_as" value="clientSide">
-                                <div class="panel-body pn mv10">
-
-                                <div class="section">
-                                    <label for="email" class="field prepend-icon">
-                                        <input type="text" name="email" id="email" class="gui-input"
-                                               placeholder="email">
-                                        <label for="email" class="field-icon">
-                                            <i class="fa fa-user"></i>
-                                        </label>
-{{--                                    </label>--}}
-{{--                                    @error('email')--}}
-{{--                                    <p class="text-danger mn">{{ $message }}</p>--}}
-
-{{--                                    @enderror--}}
-                                </div>
-                                <!-- -------------- /section -------------- -->
-
-                                <div class="section">
-                                    <label for="password" class="field prepend-icon">
-                                        <input type="text" name="password" id="password" class="gui-input"
-                                               placeholder="Password">
-                                        <label for="password" class="field-icon">
-                                            <i class="fa fa-lock"></i>
-                                        </label>
-                                    </label>
-                                </div>
-                                <!-- -------------- /section -------------- -->
-
-                                <div class="section">
-{{--                                    <div class="bs-component pull-left pt5">--}}
-{{--                                        <div class="radio-custom radio-primary mb5 lh25">--}}
-{{--                                            <input type="radio" id="remember" name="remember">--}}
-{{--                                            <label for="remember">Remember me</label>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-                                    <button type="submit" class="btn btn-bordered btn-primary pull-right">Log in</button>
-                                </div>
-                                <!-- -------------- /section -------------- -->
-
-                            </div>
-                            <!-- -------------- /Form -------------- -->
-                        </form>
-                    </div>
-                    <!-- -------------- /Panel -------------- -->
-                </div>
-                <!-- -------------- /Spec Form -------------- -->
-
-            </section>
-            <!-- -------------- /Content -------------- -->
-
-        </section>
-        <!-- -------------- /Main Wrapper -------------- -->
-
+        </div>
     </div>
-    <!-- -------------- /Body Wrap  -------------- -->
+    <!-- /Background Img Parallax -->
+
+    <div class="container margin_120_95">
+        <div class="row justify-content-between">
+            <div class="col-xl-12 col-lg-12 order-lg-1">
+                <h3 class="mb-3">Welcome Back</h3>
+                <div id="message-contact"></div>
+                <form method="POST" action="{{ route('login.client.post') }}" id="form-login">
+                    @csrf
+
+                    <!-- /row -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-floating mb-4">
+                                <input class="form-control" type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                                <label for="email">Email</label>
+                                @error('email')
+                                <p class="text-danger mn">{{ $message }}</p>
+
+                                @enderror
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- /row -->
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-floating mb-4">
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+                                <label for="password">Password</label>
+                                @error('password')
+                                <p class="text-danger mn">{{ $message }}</p>
+
+                                @enderror
+                            </div>
+                        </div>
 
 
-</x-register_layout>
+                    </div>
+
+
+                    <p class="mt-3"><input type="submit" value="Login" class="btn_1 outline"></p>
+                </form>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!--/container -->
+
+
+
+    <!-- /container -->
+
+
+
+</x-hotel-layout>
